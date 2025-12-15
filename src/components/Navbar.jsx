@@ -22,8 +22,9 @@ const Navbar = () => {
   }, [location]);
 
   const navLinks = [
+    { name: 'TOP', path: '/' },
     { name: 'Story', path: '/story' },
-    { name: '商品', path: '/product' },
+    { name: '商品情報', path: '/product' },
     { name: '科学的根拠', path: '/science' },
     { name: 'お客様の声', path: '/faq' },
   ];
@@ -97,7 +98,7 @@ const Navbar = () => {
                 to="/purchase"
                 className="px-8 py-3 bg-gray-900 text-white rounded-full text-lg tracking-widest"
               >
-                SHOP
+                購入はこちら
               </Link>
             </motion.div>
           )}

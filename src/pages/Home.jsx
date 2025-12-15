@@ -1,186 +1,179 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import GlassCard from '../components/GlassCard';
-import { ArrowRight, Droplets, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const Home = () => {
-    const { scrollY } = useScroll();
-    const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-    const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const { scrollY } = useScroll();
+  const opacityHero = useTransform(scrollY, [0, 200], [1, 0]);
 
-    return (
-        <div className="w-full overflow-hidden">
-            {/* Hero Section */}
-            <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-                {/* Background - Real Image with Elegant Overlay */}
-                <div className="absolute inset-0 z-0">
-                    <img src="/real-hero-bg.png" alt="MINTERA in Nature" className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/10 to-white/60 mix-blend-overlay"></div>
-                    <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]"></div>
-                </div>
+  const strengths = [
+    {
+      label: 'POINT 01',
+      title: '制作のきっかけ',
+      desc: '酵素風呂で働く者たちが、見てきた現場。 あらゆる疾患、不調の根元にあったもの、それが『ミネラル不足』だったことに気がついた。体内ですぐに使える、イオン化ミネラルなくてはならない、微量でありながら痛理作用のある希少ミネラル。 毛細血管まで瞬時に届く、高濃度酸素。参加した身体を環元する、マイナス電子の補給。',
+      linkTo: '/story', // 詳細ページ（必要に応じて変更OK）
+    },
+    {
+      label: 'POINT 02',
+      title: '商品情報',
+      desc: 'MINTERAは、高濃度の溶解型酸素と海洋由来ミネラル、そして電子・振動・水クラスターの研究に基づいた設計により、からだ本来のコンディションづくりをサポートします。  水に溶け込んだ酸素を効率よく届ける設計と、イオン化したミネラル、振動エネルギーの視点を組み合わせることで、自然の力を科学的アプローチで引き出すことを目指しています。',
+      linkTo: '/product',
+    },
+    {
+      label: 'POINT 03',
+      title: '科学的根拠',
+      desc: 'MINTERAは、海洋由来ミネラルと溶解型酸素を中心に、日々のコンディション維持を科学的視点からサポートします。酵素の働きを助けるミネラル、全身へ行き届く酸素、そして振動エネルギーの観点を組み合わせた新しいアプローチです。',
+      linkTo: '/science',
+    },
+    {
+      label: 'POINT 04',
+      title: 'お客様の声',
+      desc: 'MINTERAを日々取り入れた多くのお客様から、「朝の目覚めが変わった」「仕事中の集中が続く」「疲れにくくなった」など、体感に関する嬉しい声が届いています。感じ方には個人差がありますが、毎日のコンディションづくりをサポートする実感の一例です。',
+      linkTo: '/faq',
+    },
+  ];
 
-                <motion.div
-                    style={{ y: y1, opacity }}
-                    className="relative z-10 text-center px-4"
-                >
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.1, delay: 0.1 }}
-                        className="mb-8"
-                    >
-                        <span className="inline-block py-1 px-3 border border-gray-500/30 rounded-full text-xs tracking-[0.3em] text-gray-700 bg-white/30 backdrop-blur-md uppercase">
-                            Mineral Supplement
-                        </span>
-                    </motion.div>
+  return (
+    <div className="w-full overflow-hidden">
 
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.1, delay: 0.2 }}
-                        className="text-5xl md:text-8xl font-serif text-gray-800 mb-8 leading-tight drop-shadow-sm"
-                    >
-                        一滴、<br className="md:hidden" />澄みわたる。
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.1, delay: 0.3 }}
-                        className="text-gray-700 mb-12 max-w-md mx-auto leading-loose font-light text-base md:text-lg drop-shadow-sm"
-                    >
-                        静寂を、飲む。<br />
-                        からだの奥に、光を灯す。<br />
-                        水と生きる、ミネラルの力。
-                    </motion.p>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.1, delay: 0.4 }}
-                    >
-                        <Link
-                            to="/product"
-                            className="group inline-flex items-center px-10 py-4 bg-gray-900/90 text-white rounded-full hover:bg-gray-800 transition-all tracking-widest text-sm backdrop-blur-sm hover:scale-105 duration-300"
-                        >
-                            DISCOVER MINTERA <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                    </motion.div>
-                </motion.div>
-            </section>
-
-            {/* Introduction Section */}
-            <section className="py-32 relative">
-                <div className="container mx-auto px-4">
-                    <div className="max-w-3xl mx-auto text-center">
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.1 }}
-                            className="text-3xl md:text-4xl font-serif mb-12 leading-relaxed"
-                        >
-                            生命のリズムを静かに乱しています。
-                        </motion.h2>
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.1, delay: 0.1 }}
-                            className="text-gray-600 leading-loose mb-16"
-                        >
-                            MINTERA は、ミネラルをイオン化することで、からだが利用しやすい“吸収しやすい形”へと整えています。
-                            イオン化されたミネラルは、水と自然に馴染み、すばやく分散。
-                            そのままの状態よりも、からだへスムーズに届くことを目指して設計されています。
-                        </motion.p>
-                        <Link to="/story" className="text-gray-900 border-b border-gray-900 pb-1 hover:opacity-70 transition-opacity tracking-widest text-sm">
-                            READ OUR STORY
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
-            {/* Features Section */}
-            <section className="py-32 bg-gray-50 relative overflow-hidden">
-                <div className="container mx-auto px-4 relative z-10">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <GlassCard delay={0.1} className="text-center hover:shadow-xl transition-shadow duration-500">
-                            <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6 text-blue-900">
-                                <Droplets size={24} />
-                            </div>
-                            <h3 className="text-xl font-serif mb-4">たった7滴で整う</h3>
-                            <p className="text-sm text-gray-500 leading-relaxed">
-                                高濃度ミネラル配合。<br />
-                                毎日の飲み物に混ぜるだけで、<br />
-                                手軽にミネラルチャージ。
-                            </p>
-                        </GlassCard>
-                        <GlassCard delay={0.3} className="text-center hover:shadow-xl transition-shadow duration-500">
-                            <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 text-green-900">
-                                <ShieldCheck size={24} />
-                            </div>
-                            <h3 className="text-xl font-serif mb-4">国内生産・無添加</h3>
-                            <p className="text-sm text-gray-500 leading-relaxed">
-                                厳選された水源と徹底した管理。<br />
-                                保存料・着色料は一切不使用。<br />
-                                安心してお飲みいただけます。
-                            </p>
-                        </GlassCard>
-                        <GlassCard delay={0.5} className="text-center hover:shadow-xl transition-shadow duration-500">
-                            <div className="w-16 h-16 bg-purple-50 rounded-full flex items-center justify-center mx-auto mb-6 text-purple-900">
-                                <Sparkles size={24} />
-                            </div>
-                            <h3 className="text-xl font-serif mb-4">高い吸収率</h3>
-                            <p className="text-sm text-gray-500 leading-relaxed">
-                                イオン化されたミネラルが、<br />
-                                身体の隅々まで素早く浸透。<br />
-                                効率よく吸収されます。
-                            </p>
-                        </GlassCard>
-                    </div>
-                </div>
-            </section>
-
-            {/* Product Teaser */}
-            <section className="py-32">
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-col md:flex-row items-center gap-16">
-                        <div className="w-full md:w-1/2 h-[700px] bg-[#FAFAFA] rounded-2xl overflow-hidden relative flex items-center justify-center">
-                            <div className="absolute inset-0 bg-gradient-to-tr from-gray-100 to-transparent opacity-50"></div>
-                            <img src="/real-product-bottle.png" alt="Product" className="max-h-[90%] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700" />
-                        </div>
-                        <div className="w-full md:w-1/2">
-                            <span className="text-sm text-blue-900 tracking-widest uppercase mb-4 block">The Product</span>
-                            <h2 className="text-5xl font-serif mb-8">MINTERA Essence</h2>
-                            <p className="text-gray-600 leading-loose mb-8 text-lg">
-                                毎日の水分補給を、美容と健康の時間へ。<br />
-                                
-                            </p>
-                            <ul className="space-y-6 mb-12 text-gray-600">
-                                <li className="flex items-center">
-                                    <span className="w-2 h-2 bg-blue-400 rounded-full mr-4"></span>
-                                    海洋由来ミネラルをバランスよく含有
-                                </li>
-                                <li className="flex items-center">
-                                    <span className="w-2 h-2 bg-blue-400 rounded-full mr-4"></span>
-                                    毎日のケアに長く使える容量設計
-                                </li>
-                                <li className="flex items-center">
-                                    <span className="w-2 h-2 bg-blue-400 rounded-full mr-4"></span>
-                                    持ち歩けるシンプル＆コンパクト設計
-                                </li>
-                            </ul>
-                            <Link
-                                to="https://autumn-leaves-shop.square.site/product/mintera-/Z2UUJCMYYKR24ETEB533X64T?cs=true&cst=custom"
-                                className="px-10 py-4 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all tracking-widest text-sm inline-block shadow-lg hover:shadow-xl"
-                            >
-                                購入はこちら
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </section>
+      {/* HERO */}
+      <section className="relative h-screen w-full flex items-center justify-center border-b border-gray-200">
+        <div className="absolute inset-0 -z-10">
+          <img src="/real-hero-bg.png" alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px]" />
         </div>
-    );
+
+        <motion.div style={{ opacity: opacityHero }} className="text-center px-6">
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-6xl font-serif tracking-tight text-gray-900 mb-6 leading-snug"
+          >
+            <br className="md:hidden" />
+            酵素風呂の現場から生まれた<br></br>
+           イオン化ミネラルリキッド
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="text-gray-700 text-sm md:text-base max-w-xl mx-auto leading-relaxed mb-8"
+          >
+            {/* MINTERA は、たった7滴で「内側から整える」という、
+            新しいミネラル美容のカタチです。 */}
+          </motion.p>
+        </motion.div>
+      </section>
+
+      {/* 強みセクション（4つ） */}
+      <section className="py-24 bg-gray-50 border-b border-gray-200">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="text-center mb-12">
+            <p className="text-xs tracking-[0.25em] text-gray-600 uppercase mb-3">
+              Strength
+            </p>
+          <h2 className="text-[1.85rem] md:text-[2.5rem] font-serif mb-4 whitespace-nowrap">
+            MINTERA が選ばれる理由。
+            </h2>
+            <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+              続けやすさ、純度、安心感。  
+              毎日飲むものとしての、理想を追求しました。
+            </p>
+          </div>
+
+          <div className="space-y-10">
+            {strengths.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3 }}
+                className="bg-white rounded-2xl shadow-sm px-6 md:px-8 py-8 border border-gray-100"
+              >
+                <span className="inline-block text-[11px] tracking-[0.2em] text-gray-500 uppercase mb-2">
+                  {item.label}
+                </span>
+                <h3 className="text-xl md:text-2xl font-serif mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-4">
+                  {item.desc}
+                </p>
+
+                {/* 小さめの「詳しく見る」リンク */}
+                <div className="text-right">
+                  <Link
+                    to={item.linkTo}
+                    className="text-[11px] md:text-xs text-gray-500 underline underline-offset-4 hover:text-gray-800"
+                  >
+                    詳しく見る
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        
+      </section>
+
+      {/* 商品 & 購入セクション（最後） */}
+      <section className="py-32 bg-white text-center border-t border-gray-100">
+        <div className="container mx-auto px-6">
+
+          <h2 className="text-3xl md:text-4xl font-serif mb-6">
+            次の一杯から、<br className="md:hidden" />
+            内側のケアを始めませんか。
+          </h2>
+          
+
+          {/* 価格欄 */}
+          <div className="mb-10">
+            <p className="text-xs tracking-[0.25em] text-gray-500 uppercase mb-2">
+              Price
+            </p>
+            <p className="text-3xl md:text-4xl font-mono">
+              ¥13,500
+              <span className="text-xs md:text-sm text-gray-500 ml-2">
+                （税込）
+              </span>
+            </p>
+            {/* 実際の価格に合わせて変更してください */}
+          </div>
+          <Link
+            to="/product"
+            className="inline-flex items-center px-10 py-3 bg-black text-white rounded-full hover:bg-gray-900 transition-all tracking-widest text-xs md:text-sm"
+          >
+            MINTERAについて詳しく見る
+            <ArrowRight className="ml-2 w-4 h-4" />
+          </Link>
+
+          <div className="max-w-xs mx-auto mb-14">
+            <img
+              src="/real-product-bottle.png"
+              alt="MINTERA Essence ボトル"
+              className="w-full drop-shadow-2xl"
+            />
+          </div>
+
+          <a
+            href="https://autumn-leaves-shop.square.site/product/mintera-/Z2UUJCMYYKR24ETEB533X64T?cs=true&cst=custom"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-16 py-4 bg-black text-white rounded-full hover:bg-gray-800 transition-all tracking-widest text-xs md:text-sm inline-block"
+          >
+            購入はこちら
+            
+          </a>
+
+        </div>
+      </section>
+
+    </div>
+  );
 };
 
 export default Home;
